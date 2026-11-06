@@ -1,0 +1,43 @@
+{
+  "nota": "SCHEMA ILUSTRATIVO - concurso e disciplinas FICTICIOS, nunca importar como edital real.",
+  "concurso": {
+    "orgao": "Órgão Fictício",
+    "cargo": "Analista Fictício",
+    "especialidade": "Geral",
+    "banca": null,
+    "status": "historico",
+    "anoDoDocumento": null,
+    "dataProva": null,
+    "dataProvaConfirmada": false
+  },
+  "fontes": [
+    {
+      "titulo": "Lista fornecida pelo estudante",
+      "url": null,
+      "tipo": "hipotese",
+      "publicadoEm": null,
+      "verificadoEm": null,
+      "arquivo": null,
+      "referencia": "informação verbal, a confirmar"
+    }
+  ],
+  "scoring": {"modelo": null, "acerto": null, "erro": null, "notaMinima": null},
+  "blocos": [],
+  "disciplinas": [
+    {
+      "nome": "Língua Portuguesa",
+      "fonteTipo": "hipotese",
+      "blocoId": null,
+      "pesoConfirmado": null,
+      "topicos": [
+        {
+          "nome": "Interpretação de textos",
+          "subtopicos": ["Inferências", "Coesão"],
+          "referencia": "sugerido pelo estudante",
+          "fonteTipo": "hipotese"
+        }
+      ]
+    }
+  ],
+  "pendencias": ["confirmar conteúdo programático e pesos no edital oficial"]
+}

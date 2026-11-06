@@ -1,0 +1,31 @@
+{
+  "nota": "EXEMPLO FICTICIO de dados coletados na conversa. NAO e edital oficial nem um plano pronto.",
+  "perfil": {"apelido": "Meu plano", "experiencia": "iniciante", "objetivo": "aprender e realizar revisoes"},
+  "concursos": [
+    {
+      "identificador": "concurso-exemplo-1",
+      "orgao": "Orgao Exemplo",
+      "cargo": "Analista (cargo ficticio)",
+      "area": "Administrativa",
+      "banca": null,
+      "statusEdital": "nao_publicado",
+      "dataProvaConfirmada": null,
+      "importanciaRelativa": 5,
+      "fonteInicial": "disciplinas informadas pelo estudante"
+    }
+  ],
+  "disponibilidadeMinutosPorDia": {
+    "segunda": 60, "terca": 60, "quarta": 0, "quinta": 60,
+    "sexta": 60, "sabado": 120, "domingo": 0
+  },
+  "bufferPercentual": 15,
+  "bloqueios": [],
+  "duracaoSessaoMin": 40,
+  "diasDescanso": ["quarta", "domingo"],
+  "disciplinasSugeridas": [
+    {"nome": "Língua Portuguesa", "fonte": "hipotese", "familiaridade": "intermediaria"},
+    {"nome": "Raciocínio Lógico", "fonte": "hipotese", "familiaridade": "iniciante"}
+  ],
+  "perguntasPendentes": ["edital", "banca", "estrutura das provas"],
+  "consentimentoParaSubstituirDados": false
+}

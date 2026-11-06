@@ -1,0 +1,30 @@
+{
+  "name": "painel-concursos",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Painel operacional personalizado para concursos, com onboarding, perfis isolados, editais, plano adaptativo e 10 telas.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{js,jsx,css}\" index.html",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "lucide-react": "^0.469.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "tailwindcss": "3.4.17",
+    "vite": "^5.4.11"
+  },
+  "engines": {
+    "node": ">=18.18"
+  }
+}

@@ -1,0 +1,216 @@
+============================================================
+    TUTORIAL COMPLETO PARA INICIANTES ABSOLUTOS
+    Painel de Estudos SES-DF Biólogo
+============================================================
+
+Este guia é para quem NUNCA usou linha de comando, Node.js ou Git.
+Siga cada passo com calma. Demora ~10 minutos na primeira vez.
+
+============================================================
+PASSO 1: INSTALAR O NODE.JS (feito uma única vez)
+============================================================
+
+1. Abra seu navegador (Chrome, Edge, Firefox)
+2. Digite na barra de endereço:  https://nodejs.org/
+3. A página abre. Você verá DOIS botões verdes:
+   - Versão LTS (recomendada para a maioria)  ← CLIQUE NESTE
+   - Versão Current (mais nova)
+4. O download começa (arquivo .msi, ~30 MB)
+5. Quando terminar, clique no arquivo baixado para instalar
+6. Na instalação: clique "Next" em TODAS as telas (não precisa mudar nada)
+7. IMPORTANTE: No final, marque "Automatically install the necessary tools" se aparecer
+8. Clique "Finish"
+9. **REINICIE O COMPUTADOR** (obrigatório!)
+
+Como testar se funcionou:
+- Abra o "Prompt de Comando" (tecla Windows + R, digite cmd, Enter)
+- Digite:  node -v
+- Deve aparecer algo como: v20.12.0 (qualquer número v18+ está OK)
+- Digite:  npm -v
+- Deve aparecer um número (ex: 10.5.0)
+
+============================================================
+PASSO 2: LOCALIZAR A PASTA DO PROJETO
+============================================================
+
+O projeto está em:  C:\Users\Renat\Desktop\Importante\projeto-concurso
+
+Como chegar lá fácil:
+1. Abra o "Explorador de Arquivos" (tecla Windows + E)
+2. Na barra de endereço (no topo), clique e apague tudo
+3. Cole exatamente isto e aperte Enter:
+   C:\Users\Renat\Desktop\Importante\projeto-concurso
+4. Você verá estes arquivos:
+   - INICIAR_WINDOWS.bat    ← ESTE É O QUE VOCÊ CLICA
+   - INICIAR_WINDOWS.ps1
+   - README.md
+   - package.json
+   - pasta "src"
+   - pasta "node_modules" (aparece depois da 1ª execução)
+
+============================================================
+PASSO 3: EXECUTAR PELA PRIMEIRA VEZ
+============================================================
+
+1. Na pasta do projeto, procure:  INICIAR_WINDOWS.bat
+2. Dê **DUPLO CLIQUE** nele
+3. Uma janela preta (Prompt de Comando) abre
+4. Vai aparecer textos como:
+   [1/4] Verificando Node.js... OK
+   [2/4] Liberando porta 5173... OK
+   [3/4] Verificando dependencias...
+   Primeira vez? Instalando dependencias (pode demorar 1-2 min)...
+   ^^^ AGUARDE! Na primeira vez demora mesmo (baixa ~130 pacotes)
+   [4/4] Iniciando servidor... OK
+5. O navegador ABRE AUTOMATICAMENTE em http://localhost:5173
+6. Mantenha a janela preta ABERTA enquanto estuda!
+
+============================================================
+PASSO 4: CONFIGURAR SEU PLANO (Assistente de 6 passos)
+============================================================
+
+Na tela que abriu no navegador:
+
+**PASSO 1 - Nome do plano**
+- Digite: "SES-DF Biólogo 2026" (ou o nome que quiser)
+- Clique "Próximo"
+
+**PASSO 2 - Concurso**
+- Órgão: "Secretaria de Estado de Saúde do DF (SES-DF)"
+- Cargo: "Especialista em Saúde - Biólogo"
+- Banca: "Cebraspe" (ou a que for)
+- Status do edital: escolha conforme situação
+- Data da prova: se souber, selecione no calendário
+- URL do edital: cole o link se tiver
+- Clique "Próximo"
+
+**PASSO 3 - Seu diagnóstico**
+- Nível: "Iniciante" / "Intermediário" / "Avançado"
+- Disciplinas fortes: digite separadas por vírgula (ex: "Biologia Celular, Genética")
+- Disciplinas fracas: digite separadas por vírgula (ex: "Legislação SUS, Bioestatística")
+- Clique "Próximo"
+
+**PASSO 4 - Horas por dia**
+- Para cada dia, digite quantos MINUTOS líquidos consegue estudar
+- Exemplo: Segunda: 120, Terça: 90, Sábado: 240, Domingo: 180
+- Dias que NÃO estuda: deixe 0 ou marque a caixa "Dias sem estudo"
+- Buffer: deixe 15% (margem para imprevistos)
+- Data de início: hoje ou quando vai começar
+- Clique "Próximo"
+
+**PASSO 5 - Preferências**
+- Método: "Misto (teoria + questões)" é bom para a maioria
+- Questões/semana: 100 a 200 (realista para você)
+- Meta de acerto: 75% a 80%
+- Ciclo personalizado: deixe desmarcado (usa automático)
+- Clique "Próximo"
+
+**PASSO 6 - Confirmação**
+- Revise tudo
+- Clique "Confirmar e criar plano"
+
+PRONTO! Seu cronograma semanal foi gerado automaticamente.
+
+============================================================
+PASSO 5: USAR NO DIA A DIA
+============================================================
+
+**Menu lateral (esquerda) - 10 abas:**
+
+1. 🏠 HOJE - Abra TODO DIA
+   - Mostra o que estudar AGORA
+   - Alertas de revisões atrasadas
+   - Próxima ação recomendada
+   - Botão "Iniciar" em cada sessão
+
+2. 📅 CRONOGRAMA - Semana inteira
+   - Veja todos os dias
+   - Arraste sessões (clique e segure)
+   - Botão "Replanejar atrasadas" se perdeu dias
+
+3. 🔄 REVISÕES - O que revisar hoje
+   - Sistema SM-2 calcula automaticamente
+   - Clique "Revisar" → marca "Lembrei bem" / "Em parte" / "Esqueci"
+   - Reagenda sozinho
+
+4. ❓ QUESTÕES - Registre o que resolve
+   - "Nova questão" ou "Lote" (muitas de uma vez)
+   - Marque certa/errada/branco, tempo, confiança
+   - Erros vão pro "Caderno de erros" automaticamente
+
+5. ⏱ SIMULADOS - Simulados completos
+   - "Novo simulado" → carrega blocos do edital
+   - Preencha acertos/erros/brancos por bloco
+   - Calcula nota conforme a banca (Cebraspe, FGV, etc.)
+
+6. 🌳 MATRIZ - Todas as matérias
+   - Prioridades calculadas (cores: vermelho=urgente)
+   - "Importar" → cola lista do edital (CSV, TXT, JSON)
+   - Edite relevância, dificuldade, tempo estimado
+
+7. 🎯 CONCURSOS - Cadastro do edital
+   - Adicione vários concursos no mesmo perfil
+   - Blocos, pesos, notas mínimas, prazos
+   - Fontes com classificação (oficial/secundária/hipótese)
+
+8. 📓 NOTEBOOK - Anotações
+   - Por assunto, com fonte, página, link
+   - Prompts prontos para copiar e usar no ChatGPT/Claude
+
+9. 📊 RELATÓRIO - Como você está indo
+   - Gráfico planejado x executado
+   - Disciplinas sem contato há 7+ dias
+   - Alertas baseados em dados (não "achismo")
+
+10. ⚙️ CONFIGURAÇÕES - Ajustes finos
+    - Horas/dia, bloqueios (compromissos fixos)
+    - Metas, pesos do motor de prioridade
+    - Tema: Claro / Escuro / Automático
+    - **EXPORTAR JSON** (backup!) / Importar JSON
+
+============================================================
+DICAS IMPORTANTES
+============================================================
+
+💾 **FAÇA BACKUP SEMANAL**: Configurações → Exportar JSON → salve num pendrive/nuvem
+   Se der problema no navegador, você recupera tudo em 1 clique.
+
+👥 **VÁRIAS PESSOAS**: Topo da tela → "Novo perfil"
+   Cada um tem seu próprio cronograma, revisões, questões, tudo isolado.
+
+🔄 **MUDOU HORÁRIOS?**: Cronograma → "Atualizar plano (4 semanas)"
+   Recalcula só o futuro, mantém o que já fez.
+
+📱 **CELULAR**: Funciona no navegador do celular (responsivo)
+   Abra http://SEU-IP:5173 no celular (mesma rede WiFi)
+
+⌨️ **ATALHOS**:
+   F11 = Tela cheia
+   Ctrl+F5 = Recarrega forçado (se travar)
+
+============================================================
+SE ALGO DER ERRADO
+============================================================
+
+| Sintoma | O que fazer |
+|---------|-------------|
+| Janela preta fecha rápido | Clique com botão direito no .bat → "Editar" → veja a mensagem de erro |
+| "npm não reconhecido" | Reinstale Node.js e **REINICIE O PC** |
+| Porta em uso | Feche tudo, reinicie PC, tente de novo |
+| Tela branca no navegador | Ctrl+F5 ou feche/abra o navegador |
+| Perdeu dados | Configurações → Importar JSON (seu backup) |
+| Quer resetar tudo | Apague a pasta "node_modules" e rode o .bat de novo |
+
+============================================================
+CONTATO E AJUDA
+============================================================
+
+Este painel foi feito para VOCÊ estudar melhor.
+- Leia o README.md na mesma pasta para detalhes técnicos
+- O código é aberto - você pode modificar se souber programar
+- Funciona 100% offline (após 1ª execução)
+
+BOA SORTE NOS ESTUDOS! 🎯📚
+VOCÊ CONSEGUE!
+
+============================================================

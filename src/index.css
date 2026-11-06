@@ -1,0 +1,158 @@
+/*
+ * Painel de Concursos — estilos globais
+ *
+ * 1) Tokens de cor (tema claro, escuro automático e escuro/claro forçado via [data-theme]).
+ * 2) Diretivas do Tailwind.
+ * 3) Ajustes globais e utilitários próprios.
+ */
+
+:root {
+  --bg: #f7f7f5;
+  --surface: #fcfcfb;
+  --surface2: #f1f0ec;
+  --ink: #141413;
+  --ink2: #52514e;
+  --muted: #7a7872;
+  --line: #e1e0d9;
+  --line2: #c9c8be;
+  --grid: #e8e7e1;
+  --accent: #256abf;
+  --accentHover: #1c5cab;
+  --accentSoft: #e3eefb;
+  --accentInk: #184f95;
+  --onAccent: #ffffff;
+  --series1: #2a78d6;
+  --good: #0ca30c;
+  --goodSoft: #e2f4e2;
+  --goodInk: #006300;
+  --warnSoft: #fdf0d0;
+  --warnInk: #7a4f00;
+  --serious: #ec835a;
+  --seriousSoft: #fde7dd;
+  --seriousInk: #8f3a14;
+  --crit: #d03b3b;
+  --critSoft: #fbe3e3;
+  --critInk: #a42525;
+  --scrim: rgba(11, 11, 11, 0.45);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0d0d;
+    --surface: #1a1a19;
+    --surface2: #242422;
+    --ink: #f0efec;
+    --ink2: #c3c2b7;
+    --muted: #8e8c85;
+    --line: #2c2c2a;
+    --line2: #3e3e3a;
+    --grid: #2c2c2a;
+    --accent: #3987e5;
+    --accentHover: #5598e7;
+    --accentSoft: #17314f;
+    --accentInk: #9ec5f4;
+    --onAccent: #0b0b0b;
+    --series1: #3987e5;
+    --good: #0ca30c;
+    --goodSoft: #12301a;
+    --goodInk: #6fd36f;
+    --warnSoft: #3a2c0a;
+    --warnInk: #f3c969;
+    --serious: #ec835a;
+    --seriousSoft: #3d2216;
+    --seriousInk: #f2a583;
+    --crit: #e66767;
+    --critSoft: #3a1818;
+    --critInk: #f09a9a;
+    --scrim: rgba(0, 0, 0, 0.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d0d0d;
+  --surface: #1a1a19;
+  --surface2: #242422;
+  --ink: #f0efec;
+  --ink2: #c3c2b7;
+  --muted: #8e8c85;
+  --line: #2c2c2a;
+  --line2: #3e3e3a;
+  --grid: #2c2c2a;
+  --accent: #3987e5;
+  --accentHover: #5598e7;
+  --accentSoft: #17314f;
+  --accentInk: #9ec5f4;
+  --onAccent: #0b0b0b;
+  --series1: #3987e5;
+  --good: #0ca30c;
+  --goodSoft: #12301a;
+  --goodInk: #6fd36f;
+  --warnSoft: #3a2c0a;
+  --warnInk: #f3c969;
+  --serious: #ec835a;
+  --seriousSoft: #3d2216;
+  --seriousInk: #f2a583;
+  --crit: #e66767;
+  --critSoft: #3a1818;
+  --critInk: #f09a9a;
+  --scrim: rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tamanho base de 14px (o restante da tipografia usa classes do Tailwind) */
+html {
+  color-scheme: light;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    "IBM Plex Sans",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  padding-left: max(0px, env(safe-area-inset-left, 0px));
+  padding-right: max(0px, env(safe-area-inset-right, 0px));
+}
+
+.bg-hatch {
+  background: repeating-linear-gradient(45deg, var(--series1) 0 3px, transparent 3px 6px);
+  opacity: 0.55;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+input[type="date"],
+select,
+input,
+textarea {
+  color-scheme: inherit;
+}
+.tabular-nums,
+table {
+  font-variant-numeric: tabular-nums;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+header.sticky {
+  top: env(safe-area-inset-top, 0px);
+}
