@@ -1,88 +1,81 @@
 @echo off
-title Painel de Estudos - Concurso SES-DF Biologo
+title Painel de Estudos - SES-DF Biologo
 cd /d "%~dp0"
-
 color 0A
 cls
 echo.
-echo  ============================================================
-echo   PAINEL DE ESTUDOS - CONCURSO SES-DF BIOLOGO
-echo  ============================================================
-echo.
-echo  Iniciando... (pode demorar alguns segundos na primeira vez)
+echo ============================================================
+echo  PAINEL DE ESTUDOS - CONCURSO SES-DF BIOLOGO
+echo ============================================================
 echo.
 
-:: -----------------------------------------------------------
-:: 1. Verifica Node.js de forma silenciosa
-:: -----------------------------------------------------------
-where node >nul 2>&1
+REM Verifica Node.js
+echo [1] Verificando Node.js...
+node -v >nul 2>&1
 if errorlevel 1 (
-    echo  ERRO: Node.js nao encontrado.
     echo.
-    echo  Por favor, instale o Node.js LTS em: https://nodejs.org/
-    echo  (Baixe o instalador .msi, clique Next em tudo, REINICIE O PC)
+    echo ERRO: Node.js nao esta no PATH.
+    echo Instale em https://nodejs.org/ (LTS) e REINICIE O PC.
     echo.
     pause
     exit /b 1
 )
+for /f %%v in ('node -v') do echo      OK - Node.js %%v
+echo.
 
-:: -----------------------------------------------------------
-:: 2. Mata processos Node antigos nas portas comuns (silencioso)
-:: -----------------------------------------------------------
+REM Verifica npm
+echo [2] Verificando npm...
+npm -v >nul 2>&1
+if errorlevel 1 (
+    echo      ERRO: npm nao encontrado.
+    pause
+    exit /b 1
+)
+for /f %%v in ('npm -v') do echo      OK - npm %%v
+echo.
+
+REM Limpa portas
+echo [3] Limpando portas 5173-5177...
 for %%p in (5173 5174 5175 5176 5177) do (
-    for /f "tokens=5" %%a in ('netstat -ano ^| findstr :%%p 2^>nul') do (
-        taskkill /PID %%a /F >nul 2>&1
-    )
+    for /f "tokens=5" %%a in ('netstat -ano ^| findstr :%%p 2^>nul') do taskkill /PID %%a /F >nul 2>&1
 )
-
-:: -----------------------------------------------------------
-:: 3. Instala dependencias se for a primeira vez
-:: -----------------------------------------------------------
-if not exist "node_modules\.bin\vite.cmd" (
-    echo  Primeira execucao detectada - instalando dependencias...
-    echo  (Isso so acontece uma vez, aguarde 1-3 minutos)
-    echo.
-    npm install >nul 2>&1
-    if errorlevel 1 (
-        echo.
-        echo  Erro ao instalar. Verifique sua internet e tente novamente.
-        echo.
-        pause
-        exit /b 1
-    )
-    echo  Pronto! Dependencias instaladas.
-    echo.
-)
-
-:: -----------------------------------------------------------
-:: 4. Tenta subir o servidor na primeira porta livre
-:: -----------------------------------------------------------
-set PORT=5173
-:TRY_PORT
-netstat -ano | findstr :%PORT% >nul 2>&1
-if errorlevel 1 (
-    :: Porta livre - inicia o servidor
-    echo  Abrindo no navegador: http://localhost:%PORT%
-    echo.
-    echo  ============================================================
-    echo   MANTENHA ESTA JANELA ABERTA ENQUANTO ESTUDA
-    echo   Para fechar: Ctrl+C ou clique no X desta janela
-    echo  ============================================================
-    echo.
-    start "" "http://localhost:%PORT%"
-    npx vite --port %PORT% --strictPort
-    goto :END
-) else (
-    :: Porta ocupada - tenta a proxima
-    set /a PORT=%PORT%+1
-    if %PORT% LEQ 5177 goto TRY_PORT
-    echo  Nao foi possivel encontrar porta livre (5173-5177).
-    echo  Reinicie o computador e tente novamente.
-    pause
-    exit /b 1
-)
-
-:END
+echo      OK
 echo.
-echo  Servidor finalizado.
+
+REM Dependencias
+echo [4] Verificando dependencias...
+if not exist "node_modules\.bin\vite.cmd" (
+    echo      Instalando (1-3 min)... AGUARDE.
+    npm install
+    if errorlevel 1 (echo ERRO ao instalar. & pause & exit /b 1)
+    echo      OK
+) else (
+    echo      OK - ja instaladas
+)
+echo.
+
+REM Porta livre
+echo [5] Procurando porta...
+set PORT=5173
+:LOOP
+netstat -ano | findstr :%PORT% >nul 2>&1
+if errorlevel 1 (echo      Porta %PORT% livre & echo.) else (set /a PORT+=1 & if %PORT% LEQ 5177 goto LOOP & echo ERRO: sem porta livre. & pause & exit /b 1)
+
+REM Inicia
+echo.
+echo ============================================================
+echo  INICIANDO SERVIDOR NA PORTA %PORT%...
+echo  Navegador abrira em 3 segundos.
+echo ============================================================
+echo.
+echo  MANTENHA ESTA JANELA ABERTA. Para parar: Ctrl+C
+echo ============================================================
+echo.
+
+ping 127.0.0.1 -n 4 >nul
+start "" "http://localhost:%PORT%"
+npx vite --port %PORT% --strictPort
+
+echo.
+echo Servidor finalizado.
 pause

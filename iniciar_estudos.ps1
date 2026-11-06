@@ -1,14 +1,12 @@
 <#
 .SYNOPSIS
     Inicia o Painel de Estudos para Concurso (React + Vite)
-    Funciona com duplo clique no Windows (PowerShell)
+    Versão simples: roda Vite em primeiro plano, abre navegador após 3 seg
 #>
 
-# Configurações
 $projectDir = $PSScriptRoot
 $ports = 5173..5177
 
-# Cores no console
 $host.UI.RawUI.BackgroundColor = "Black"
 $host.UI.RawUI.ForegroundColor = "Green"
 Clear-Host
@@ -50,13 +48,12 @@ Set-Location $projectDir
 # 4. Instala dependências se primeira vez
 $vitePath = Join-Path $projectDir "node_modules\.bin\vite.cmd"
 if (-not (Test-Path $vitePath)) {
-    Write-Host "`nPrimeira execução detectada - instalando dependências..."
-    Write-Host "(Isso só acontece uma vez, aguarde 1-3 minutos)`n"
+    Write-Host "`nPrimeira execução - instalando dependências (1-3 min)...`n"
     try {
         npm install 2>$null | Out-Null
-        Write-Host "✓ Dependências instaladas com sucesso`n"
+        Write-Host "✓ Dependências instaladas`n"
     } catch {
-        Write-Host "`n✗ Erro ao instalar dependências. Verifique sua internet." -ForegroundColor Red
+        Write-Host "`n✗ Erro ao instalar. Verifique internet." -ForegroundColor Red
         Read-Host "Pressione Enter para sair"
         exit 1
     }
@@ -64,7 +61,7 @@ if (-not (Test-Path $vitePath)) {
     Write-Host "✓ Dependências já instaladas`n"
 }
 
-# 5. Tenta primeira porta livre
+# 5. Encontra porta livre
 $chosenPort = $null
 foreach ($port in $ports) {
     $inUse = Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue
@@ -75,27 +72,32 @@ foreach ($port in $ports) {
 }
 
 if (-not $chosenPort) {
-    Write-Host "`n✗ Não foi possível encontrar porta livre (5173-5177)." -ForegroundColor Red
-    Write-Host "Reinicie o computador e tente novamente.`n"
+    Write-Host "`n✗ Sem porta livre (5173-5177). Reinicie o PC.`n" -ForegroundColor Red
     Read-Host "Pressione Enter para sair"
     exit 1
 }
 
-# 6. Abre navegador e inicia servidor
-Write-Host "`n============================================================"
-Write-Host "  ABRINDO: http://localhost:$chosenPort"
-Write-Host "============================================================`n"
-Write-Host "MANTENHA ESTA JANELA ABERTA ENQUANTO ESTUDA"
-Write-Host "Para parar: Ctrl+C ou feche esta janela"
-Write-Host "============================================================`n"
+# 6. Inicia servidor e abre navegador
+Write-Host "`nPorta $chosenPort livre. Iniciando servidor..."
+Write-Host ""
+Write-Host "============================================================"
+Write-Host "  AGUARDE: servidor inicia + navegador abre automaticamente"
+Write-Host "  (pode levar até 10 segundos na primeira vez)"
+Write-Host "============================================================"
+Write-Host ""
 
-# Abre no navegador padrão
-Start-Process "http://localhost:$chosenPort"
+# Abre navegador após 3 segundos (job em background)
+$browserJob = Start-Job -ScriptBlock {
+    param($port)
+    Start-Sleep -Seconds 3
+    Start-Process "http://localhost:$port"
+} -ArgumentList $chosenPort
 
-# Inicia Vite (bloqueia aqui até fechar)
+# Inicia Vite em primeiro plano (bloqueia aqui - É O QUE QUEREMOS)
 try {
     & npx vite --port $chosenPort --strictPort
 } catch {
     Write-Host "`nServidor finalizado."
-    Read-Host "Pressione Enter para sair"
 }
+# Limpa job do navegador se ainda estiver rodando
+$browserJob | Remove-Job -Force -ErrorAction SilentlyContinue

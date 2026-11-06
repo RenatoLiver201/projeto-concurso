@@ -21,51 +21,67 @@ Este painel ajuda você a **organizar, planejar e acompanhar** seus estudos para
 
 ---
 
-## 🚀 Como começar (3 passos simples)
+## 🚀 Como começar (Método recomendado: linha de comando)
 
 ### Pré-requisito: Instalar Node.js (uma vez só)
 1. Acesse: https://nodejs.org/
 2. Baixe a versão **LTS** (botão verde)
 3. Instale clicando em "Next" até o final
-4. **Reinicie o computador**
+4. **IMPORTANTE**: Marque "Automatically install the necessary tools"
+5. **REINICIE O COMPUTADOR** (obrigatório!)
+6. Teste: abra o Prompt de Comando (`cmd`) e digite `node -v` — deve aparecer algo como `v20.x.x` ou `v22.x.x`
 
 ---
 
-### Opção 1: Mais Fácil — Duplo Clique ⭐
-```
-1. Abra a pasta: C:\Users\Renat\Desktop\Importante\projeto-concurso
-2. Procure o arquivo: iniciar_estudos.bat
-3. Dê DUPLO CLIQUE nele
-4. Pronto! O navegador abre automaticamente
-```
+### ✅ Método Principal: Prompt de Comando (cmd) — **Mais confiável**
 
-### Opção 2: PowerShell (se a opção 1 não funcionar)
-```
-1. Na mesma pasta, clique com BOTÃO DIREITO no arquivo iniciar_estudos.ps1
-2. Escolha "Executar com PowerShell"
-3. Se aparecer aviso de segurança, clique "Mais informações" → "Executar mesmo assim"
-```
-
-### Opção 3: Prompt de Comando (cmd)
-```
+```cmd
 1. Tecla Windows + R → digite: cmd → Enter
-2. Cole isto e aperte Enter:
-   cd C:\Users\Renat\Desktop\Importante\projeto-concurso && npm run dev -- --port 5173 --strictPort
-3. Abra o navegador em: http://localhost:5173
+2. Cole este comando e aperte Enter:
+   cd /d "C:\Users\Amanda Rocha\Documents\Renato\projeto-concurso\projeto-concurso" && npm run dev -- --port 5173 --strictPort
+3. Aguarde aparecer: "VITE v5.x.x ready in XXXms" e "Local: http://localhost:5173/"
+4. O navegador abre automaticamente (ou clique no link acima)
+5. MANTENHA ESSA JANELA ABERTA enquanto estuda
+6. Para parar: Ctrl+C nesta janela
+```
+
+> **Dica**: Se a porta 5173 estiver ocupada, troque `--port 5173` por `--port 5174` (ou 5175, 5176...).
+
+---
+
+### 🔄 Métodos Alternativos (se o principal falhar)
+
+#### Opção 2: PowerShell
+```powershell
+1. Botão direito no Iniciar → "Terminal (Admin)" ou "Windows PowerShell"
+2. Cole e Enter:
+   cd "C:\Users\Amanda Rocha\Documents\Renato\projeto-concurso\projeto-concurso"; npm run dev -- --port 5173 --strictPort
+```
+
+#### Opção 3: Arquivo .bat (duplo clique)
+```
+1. Abra a pasta: C:\Users\Amanda Rocha\Documents\Renato\projeto-concurso\projeto-concurso
+2. Duplo clique em: iniciar_estudos.bat
+3. Se não abrir: botão direito → "Executar como administrador"
+```
+
+#### Opção 4: PowerShell via arquivo .ps1
+```
+1. Na mesma pasta, botão direito em: iniciar_estudos.ps1
+2. "Executar com PowerShell"
+3. Se der erro de política: use a Opção 1 (cmd)
 ```
 
 ---
 
 ## 🎓 Primeira vez? Siga o assistente!
 
-Ao abrir pela primeira vez, você verá um **assistente de 6 passos**:
+Ao abrir pela primeira vez, você verá um **assistente de 4 passos**:
 
-1. **Nome do plano** → Ex: "SES-DF Biólogo 2026"
-2. **Dados do concurso** → Órgão, cargo, banca, data da prova (se souber)
-3. **Seu diagnóstico** → O que já sabe, o que tem dificuldade
-4. **Horas por dia** → Quantos minutos consegue estudar de Seg a Dom
-5. **Preferências** → Método de estudo, metas de questões/semana
-6. **Confirmação** → Revise e clique em "Criar meu plano"
+1. **Estudante** → Seu nome ou apelido
+2. **Concurso** → Órgão, cargo, banca, data da prova (se souber)
+3. **Edital e matérias** → Importe o conteúdo programático (TXT/CSV/JSON/PDF) ou pule se não tiver
+4. **Rotina e plano** → Horas por dia (Seg a Dom), experiência, preferências
 
 > 💡 **Dica**: Não sabe algum dado? Deixe em branco e edite depois na tela **Configurações** ou **Concursos**.
 
@@ -124,11 +140,12 @@ O painel vem **vazio** para você configurar **qualquer concurso**:
 
 | Problema | Solução |
 |----------|---------|
-| "`npm` não é reconhecido" | Instale Node.js (link acima) e **reinicie o PC** |
-| "Porta 5173 em uso" | O script `iniciar_estudos.bat` libera automaticamente. Se persistir, reinicie o PC |
+| "`npm` não é reconhecido" | Instale Node.js (link acima), **reinicie o PC**, teste `node -v` no cmd |
+| "Porta 5173 em uso" | Use `--port 5174` (ou 5175, 5176...) no comando |
 | Tela branca / erro | Feche o navegador, abra novamente. Ou **Ctrl+F5** para forçar recarregar |
-| "ExecutionPolicy" no PowerShell | Use o **`iniciar_estudos.bat`** (Opção 1) |
+| "ExecutionPolicy" no PowerShell | Use o **Prompt de Comando (cmd)** — Opção 1 acima |
 | Quer usar em outro PC | Exporte JSON (Configurações) → Copie arquivo → Importe no outro PC |
+| Duplo clique no .bat não abre | Use o **método principal (cmd)** acima — funciona sempre |
 
 ---
 
@@ -146,8 +163,8 @@ O painel vem **vazio** para você configurar **qualquer concurso**:
 
 ```
 projeto-concurso/
-├── iniciar_estudos.bat     ← CLIQUE AQUI PARA ABRIR (Windows)
-├── iniciar_estudos.ps1     ← Alternativa PowerShell
+├── iniciar_estudos.bat     ← Alternativa: duplo clique
+├── iniciar_estudos.ps1     ← Alternativa: PowerShell
 ├── package.json            ← Configuração do projeto
 ├── src/                    ← Código fonte (React + Vite)
 │   ├── components/         ← Botões, cards, modais, gráficos
@@ -161,10 +178,9 @@ projeto-concurso/
 
 ## 🆘 Precisa de ajuda?
 
-1. Leia este arquivo novamente com calma
-2. Tente as 3 opções de abertura em ordem
-3. Verifique se Node.js está instalado: abra cmd e digite `node -v`
-4. Se nada funcionar, reinstale Node.js e reinicie o computador
+1. Use o **Método Principal (cmd)** acima — é o que sempre funciona
+2. Verifique se Node.js está instalado: abra cmd e digite `node -v`
+3. Se nada funcionar, reinstale Node.js (LTS), **reinicie o PC**, e tente novamente
 
 ---
 
